@@ -14,6 +14,12 @@ module "subnet" {
   availability_zone = "us-east-1a"
 }
 
+module "security_group" {
+  source = "./modules/security_group"
+  name   = "web"
+  vpc_id = module.vpc.vpc_id
+}
+
 
 
 
@@ -21,9 +27,9 @@ module "ec2_instance" {
   source            = "./modules/ec2_instance"
   ami_id            = "ami-053b0d53c279acc90"
   instance_type     = "t2.micro"
+  security_group_id = module.security_group.security_group_id
   subnet_id         = module.subnet.subnet_id
 }
-
 
 
 

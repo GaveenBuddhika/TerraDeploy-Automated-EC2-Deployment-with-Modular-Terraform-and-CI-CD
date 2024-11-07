@@ -15,3 +15,9 @@ variable "ami_id" {
   type = string
   description = "AMI ID for the instance"
 }
+
+variable "security_group_id" {
+    type = string
+    description = "Security group IDs for the instance"
+  
+}
