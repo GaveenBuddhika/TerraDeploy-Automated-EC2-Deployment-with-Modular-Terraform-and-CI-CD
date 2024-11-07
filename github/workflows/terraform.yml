@@ -1,6 +1,7 @@
 name: Terraform Deployment
 
 on: workflow_dispatch
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
