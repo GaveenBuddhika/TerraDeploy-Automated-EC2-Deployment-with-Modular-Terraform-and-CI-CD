@@ -4,13 +4,13 @@ provider "aws" {
 
 module "vpc" {
   source = "./modules/vpc"
-  cidr   = "10.0.0.0/16"
+  cidr   = "10.0.0.0/16"  #Replace with your custom cidr
 }
 
 module "subnet" {
   source            = "./modules/subnet"
   vpc_id            = module.vpc.vpc_id
-  cidr_block        = "10.0.0.0/24"
+  cidr_block        = "10.0.0.0/24"  #Replace with your custom cidr
   availability_zone = "us-east-1a"
 }
 
@@ -25,8 +25,8 @@ module "security_group" {
 
 module "ec2_instance" {
   source            = "./modules/ec2_instance"
-  ami_id            = "ami-053b0d53c279acc90"
-  instance_type     = "t2.micro"
+  ami_id            = "ami-053b0d53c279acc90"   #Replace with your  ami
+  instance_type     = "t2.micro"                #Replace with your instance type
   security_group_id = module.security_group.security_group_id
   subnet_id         = module.subnet.subnet_id
 }
@@ -35,7 +35,7 @@ module "ec2_instance" {
 
 
 resource "aws_dynamodb_table" "terraform_lock" {
-  name           = "terraform-lock"
+  name           = "terraform-lock"  #Replace with your custom name
   billing_mode   = "PAY_PER_REQUEST"
   hash_key       = "LockID"
 
